@@ -17,8 +17,15 @@
             @foreach ($todos as $task)
                    <li class="list-group-item">
                    {{$task->title}}
-                     <a href="/todos/{{$task->id}}" class="btn btn-primary float-right ">View</a>
+
+                   @if (!$task->completed)
+                   <a href="/todos/{{$task->id}}/completed" style="color:white" class="btn btn-warning float-right ">Completed</a> 
+                   @endif
+
+                     <a href="/todos/{{$task->id}}" class="btn btn-primary float-right  mr-2">View</a>  
+                   
                     
+                     
                    </li> 
                   
              @endforeach

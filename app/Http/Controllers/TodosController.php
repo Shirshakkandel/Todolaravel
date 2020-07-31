@@ -37,6 +37,7 @@ class TodosController extends Controller
         $todo->description=$data['description'];
         $todo->completed =false;
         $todo->save();
+        session()->flash('success','Todo Store succesfully');
         return redirect('/todos');
 
     }
@@ -45,6 +46,7 @@ class TodosController extends Controller
     {
        
         return view('todos.edit')->with('todo',$todo);
+        session()->flash('success', 'Todo edit successfully');
 
 
     }
@@ -62,6 +64,7 @@ class TodosController extends Controller
         $todo->description=$data['description'];
         $todo->completed =false;
         $todo->save();
+        session()->flash('success', 'Todo update successfully');
         return redirect('/todos');
 
     }
@@ -70,6 +73,17 @@ class TodosController extends Controller
     {
        
         $todo->delete();
+        session()->flash('success', 'Todo delete successfully');
+        return redirect('/todos');
+        
+    }
+
+    public function completed(Todo $todo)
+    {
+        $todo->completed=true;
+        $todo->save();
+        session()->flash('success',"Todo completed succesfully");
+
         return redirect('/todos');
     }
 }
